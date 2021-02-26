@@ -13,4 +13,12 @@ public class ResponderModelTest {
         assertThat(respuesta).isEqualTo("rocinante");
 
     }
+    @Test
+    public void  cuandoPreguntanPorNumeroMayor(){
+        ResponderModel responder = new ResponderModel();
+        String pregunta = "1e2ff3b0: which of the following numbers is the largest: 50, 36, 776, 713";
+        String respuesta = responder.answer(pregunta);
+        assertThat(respuesta).isEqualTo("776");
+
+    }
 }

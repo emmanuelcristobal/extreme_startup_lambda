@@ -20,7 +20,27 @@ public class ResponderModel {
         if (sumMatcher.matches()) {
             return String.valueOf(Integer.parseInt(sumMatcher.group(1)) + Integer.parseInt(sumMatcher.group(2)));
         }
-        
+
+        //Matcher numFollowingLargestMatcher = Pattern.compile(".*which of the following numbers is the largest: (\\d+)").matcher(question);
+        //if (sumMatcher.matches()) {
+        //    return String.valueOf(Integer.parseInt(sumMatcher.group(1)) + Integer.parseInt(sumMatcher.group(2)));
+        //}
+
+        Matcher mayorMatcher = Pattern.compile(".*which of the following numbers is the largest:.*").matcher(question);
+        if (mayorMatcher.matches()){
+            String[] digitosPregunta = question.split(".*:");
+            Matcher digitos = Pattern.compile("(\\d+)").matcher(digitosPregunta[1]);
+            Integer mayor = 0;
+            while (digitos.find()){
+                int iter = Integer.parseInt(digitos.group());
+                if (mayor < Integer.parseInt(digitos.group())){
+                    mayor = iter;
+                }
+            }
+            return mayor.toString();
+        }
+
+
         return "";
     }
 
